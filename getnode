@@ -23,6 +23,10 @@ if [ "$1" == "" ]; then
     echo
     exit 1
 fi
+function error {
+    echo -e "$1\n"
+    exit 2
+}
 version="$1"
 dir="node-v$version"
 file="$dir.tar.gz"
@@ -41,9 +45,7 @@ echo "    $prefix"
 
 d1=`date '+%Y-%m-%d %H:%M:%S'`
 if [ -d $dir ]; then
-    echo "Directory $dir already exists - remove manually"
-    echo
-    exit 2
+    error "Directory $dir already exists - remove manually"
 fi
 if [ -f $file ]; then
     echo "File $file already exists - skipping download"
@@ -51,19 +53,15 @@ else
     wget $url
 fi
 if [ ! -f $file ]; then
-    echo "File $file not found - download failed"
-    echo
-    exit 2
+    error "File $file not found - download failed"
 fi
-tar xzvf $file || (echo "Error extracting $file"; exit 2)
+tar xzvf $file || error "Error extracting $file"
 if [ ! -d $dir ]; then
-    echo "Directory $dir not found - extraction failed"
-    echo
-    exit 2
+    error "Directory $dir not found - extraction failed"
 fi
 cd $dir
 ./configure --prefix=$prefix \
-&& make && make test && echo DONE || (echo ERROR; exit 2)
+&& make && make test && echo DONE || error ERROR
 d2=`date '+%Y-%m-%d %H:%M:%S'`
 echo -e "From:\t$d1\nTo:\t$d2"
 echo
