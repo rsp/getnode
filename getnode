@@ -1,40 +1,40 @@
 #!/bin/bash
 # RSP 2010-09-16
 echo
-echo "Getperl - Copyright (c) 2010 Rafal Pocztarski"
+echo "Getnode - Copyright (c) 2010, 2011 Rafal Pocztarski"
 echo "This program comes with ABSOLUTELY NO WARRANTY."
 echo "You may redistribute it under certain conditions."
 echo "See LICENSE for details."
 echo
-echo "Getperl downloads, configures, builds and tests perl."
-echo "Project home page: http://github.com/rsp/getperl"
+echo "Getnode downloads, configures, builds and tests node."
+echo "Project home page: http://github.com/rsp/getnode"
 echo
 if [ "$1" == "" ]; then
-    echo "Usage: getperl VERSION"
-    echo "       getperl VERSION PREFIX"
+    echo "Usage: getnode VERSION"
+    echo "       getnode VERSION PREFIX"
     echo
-    echo "Downloads: http://www.cpan.org/src/5.0/perl-VERSION.tar.gz"
-    echo "and builds for installation in PREFIX or /opt/perl by default."
-    echo "If PREFIX is 'v' or 'V' it is equivalent to /opt/perl-VERSION"
+    echo "Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz"
+    echo "and builds for installation in PREFIX or /opt/node by default."
+    echo "If PREFIX is 'v' or 'V' it is equivalent to /opt/node-VERSION"
     echo
-    echo "Examples: getperl 5.12.2"
-    echo "          getperl 5.12.2 v"
-    echo "          getperl 5.12.2 /usr/local"
+    echo "Examples: getnode 0.2.6"
+    echo "          getnode 0.2.6 v"
+    echo "          getnode 0.2.6 /usr/local"
     echo
     exit 1
 fi
 version="$1"
-dir="perl-$version"
+dir="node-v$version"
 file="$dir.tar.gz"
-url="http://www.cpan.org/src/5.0/$file"
+url="http://nodejs.org/dist/$file"
 if [ "$2" == "" ]; then
-    prefix="/opt/perl"
+    prefix="/opt/node"
 elif [ "$2" == "v" ] || [ "$2" == "V" ]; then
-    prefix="/opt/perl-$version"
+    prefix="/opt/node-$version"
 else
     prefix="$2"
 fi
-echo "Getperl is going to download:"
+echo "Getnode is going to download:"
 echo "    $url"
 echo "and build it for installation in:"
 echo "    $prefix"
@@ -62,7 +62,7 @@ if [ ! -d $dir ]; then
     exit 2
 fi
 cd $dir
-sh Configure -Dprefix=$prefix -de \
+./configure --prefix=$prefix \
 && make && make test && echo DONE || (echo ERROR; exit 2)
 d2=`date '+%Y-%m-%d %H:%M:%S'`
 echo -e "From:\t$d1\nTo:\t$d2"
