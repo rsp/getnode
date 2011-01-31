@@ -1,20 +1,20 @@
 
-Getperl - Copyright (c) 2010 Rafal Pocztarski
+Getnode - Copyright (c) 2010, 2011 Rafal Pocztarski
 This program comes with ABSOLUTELY NO WARRANTY.
 You may redistribute it under certain conditions.
 See LICENSE for details.
 
-Getperl downloads, configures, builds and tests perl.
-Project home page: http://github.com/rsp/getperl
+Getnode downloads, configures, builds and tests node.
+Project home page: http://github.com/rsp/getnode
 
-Usage: getperl VERSION
-       getperl VERSION PREFIX
+Usage: getnode VERSION
+       getnode VERSION PREFIX
 
-Downloads: http://www.cpan.org/src/5.0/perl-VERSION.tar.gz
-and builds for installation in PREFIX or /opt/perl by default.
-If PREFIX is 'v' or 'V' it is equivalent to /opt/perl-VERSION
+Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz
+and builds for installation in PREFIX or /opt/node by default.
+If PREFIX is 'v' or 'V' it is equivalent to /opt/node-VERSION
 
-Examples: getperl 5.12.2
-          getperl 5.12.2 v
-          getperl 5.12.2 /usr/local
+Examples: getnode 0.2.6
+          getnode 0.2.6 v
+          getnode 0.2.6 /usr/local
 
