@@ -5,8 +5,8 @@ This program comes with ABSOLUTELY NO WARRANTY.
 You may redistribute it under certain conditions.
 See LICENSE or run `getnode license` for details.
 
-Getnode downloads, configures, builds and tests Node.js
-Project home page: [https://github.com/rsp/getnode]
+Getnode downloads, configures, builds and tests the Node.js source code.
+[Project home page](https://github.com/rsp/getnode)
 
 Usage: 
        getnode VERSION
@@ -25,7 +25,7 @@ ABOUT NODE
 ----------
 
 Node.js is an event-driven I/O framework for the V8 JavaScript engine
-developed by Ryan Dahl.  For more info see: [http://nodejs.org/]
+developed by Ryan Dahl.  For more info see [Node website](http://nodejs.org/).
 
 ABOUT GETNODE
 -------------
@@ -49,7 +49,7 @@ For example on a fresh install of Ubuntu Server 10.10 you need to run:
 to have everything needed to build Node.
 
 For more info on Node's dependencies see:
-https://github.com/ry/node/wiki/Installation
+[Node Installation](https://github.com/ry/node/wiki/Installation)
 
 TODO
 ----
