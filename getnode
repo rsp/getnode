@@ -103,8 +103,7 @@ function usage_help {
     exit
 }
 function usage_error {
-    echo -e "GETNODE - $HEADER\n\nError: Bad arguments\n\n$USAGE"
-    exit 1
+    error "GETNODE - $HEADER\n\nError: Bad arguments\n\n$USAGE"
 }
 function help {
     echo -e "GETNODE\n=======\n$HEADER\n\n$INTRO\n\n$USAGE\n\n$DESCRIPTION"
@@ -113,6 +112,15 @@ function help {
 function license {
     echo -e "$LICENSE"
     exit
+}
+function askcontinue {
+    read -p "Do you want to continue [Y/n]? "
+    case "$REPLY" in
+        "");;
+        [Yy]);;
+        [Yy][Ee][Ss]);;
+        *) error "Aborting";;
+    esac
 }
 
 case "$1" in
@@ -135,10 +143,12 @@ elif [ "$2" == "v" ] || [ "$2" == "V" ]; then
 else
     prefix="$2"
 fi
+warn "GETNODE - $HEADER\n"
 warn "Getnode is going to download:"
 warn "    $url"
 warn "and build it for installation in:"
 warn "    $prefix"
+askcontinue
 
 d1=`date '+%Y-%m-%d %H:%M:%S'`
 if [ -d $dir ]; then
