@@ -23,19 +23,16 @@ Examples:
 
 ABOUT NODE
 ----------
-
 [Node.js](http://nodejs.org/) is an event-driven I/O framework for the V8
 JavaScript engine developed by Ryan Dahl.
 
 ABOUT GETNODE
 -------------
-
 Getnode is a shell script written by Rafał Pocztarski to speed up Node
 deployments.
 
 PREREQUISITES
 -------------
-
 Getnode uses Wget to download the source code of Node, Tar to extract it and
 Make to build it.  Building Node requires essential development tools like
 Make and a C++ compiler, Python version 2.4 or higher and a development
@@ -53,7 +50,6 @@ See more info on
 
 TODO
 ----
-
 There is still a lot to do to make this script more useful.
 
 The default installation prefix will change and more shortcuts will be added.
