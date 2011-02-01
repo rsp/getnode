@@ -43,11 +43,17 @@ For more advanced tools to manage Node installations see:
 [nave](https://github.com/isaacs/nave) by
 [Isaac Z. Schlueter](https://github.com/isaacs).
 
+Both nvm and nave can be used to manage many different Node versions installed
+simultaneously on the same system.  Getnode on the other hand can be used to
+install one version of Node on many different systems.  So if you need to run
+a specific version of Node in a heterogeneous environment of incompatible
+systems where binary deployment is not an option then Getnode may be for you.
+
 PREREQUISITES
 -------------
-Getnode uses Wget to download the source code of Node, Tar to extract it and
-Make to build it.  Building Node requires essential development tools like
-Make and a C++ compiler, Python version 2.4 or higher and a development
+Getnode uses cURL or Wget to download the source code of Node, Tar to extract
+it and Make to build it.  Building Node requires essential development tools
+like Make and a C++ compiler, Python version 2.4 or higher and a development
 version of the SSL library.  Testing Node requires cURL.
 
 Most of those tools are probably installed by default on any modern system.
@@ -59,6 +65,12 @@ to have everything needed to build and test Node.
 
 See more info on
 [Node's dependencies](https://github.com/ry/node/wiki/Installation).
+
+BUGS
+----
+If you find any bugs or have any suggestion, please use
+[the issue tracking system](https://github.com/rsp/getnode/issues)
+or fork the project on GitHub, fix it and send me a pull request.
 
 TODO
 ----
