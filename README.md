@@ -5,8 +5,8 @@ This program comes with ABSOLUTELY NO WARRANTY.
 You may redistribute it under certain conditions.
 See LICENSE or run `getnode license` for details.
 
-[Getnode](https://github.com/rsp/getnode)
-downloads, configures, builds and tests the Node.js source code.
+Getnode downloads, configures, builds and tests the Node.js source code.
+Project home page: [https://github.com/rsp/getnode]
 
 Usage: 
        getnode VERSION
@@ -15,6 +15,7 @@ Usage:
 Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz
 and builds for installation in PREFIX or /opt/node by default.
 If PREFIX is `v` or `V` it is equivalent to /opt/node-VERSION
+(Note: the default prefix will change in later versions)
 
 Examples:
           getnode 0.2.6
@@ -24,16 +25,23 @@ Examples:
 ABOUT NODE
 ----------
 [Node.js](http://nodejs.org/) is an event-driven I/O framework for the V8
-JavaScript engine developed by Ryan Dahl.
+JavaScript engine developed by [Ryan Dahl](https://github.com/ry).
 
 ABOUT GETNODE
 -------------
-Getnode is a shell script written by Rafał Pocztarski to speed up Node
-deployments.
+[Getnode](https://github.com/rsp/getnode) is a shell script written by
+[Rafał Pocztarski](https://github.com/rsp) to speed up Node deployments.
 
 It downloads the source code of a given version of Node, calculates SHA-1
 checksum and asks for approval.  Then it tries to configure, build and test
 Node.  Currently it doesn't install but does everything except `make install`.
+
+Note that it only installs a single version in a single place at a time.
+For more advanced tools to manage Node installations see:
+[nvm](https://github.com/creationix/nvm) by 
+[Tim Caswell](https://github.com/creationix) and
+[nave](https://github.com/isaacs/nave) by
+[Isaac Z. Schlueter](https://github.com/isaacs).
 
 PREREQUISITES
 -------------
