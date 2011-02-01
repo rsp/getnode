@@ -31,6 +31,10 @@ ABOUT GETNODE
 Getnode is a shell script written by Rafał Pocztarski to speed up Node
 deployments.
 
+It downloads the source code of a given version of Node, calculates SHA-1
+checksum and asks for approval.  Then it tries to configure, build and test
+Node.  Currently it doesn't install but does everything except `make install`.
+
 PREREQUISITES
 -------------
 Getnode uses Wget to download the source code of Node, Tar to extract it and
@@ -52,8 +56,10 @@ TODO
 ----
 There is still a lot to do to make this script more useful.
 
-The default installation prefix will change and more shortcuts will be added.
-
-There should be an option to build without SSL and maybe without testing.
+* The default installation prefix will change and more shortcuts will be added.
+* There should be an option to build without SSL and maybe without testing.
+* There will be an option to automatically `make install`.
+* There will be option to automatically answer Yes to any question.
+* There will be a way to supply the correct SHA-1 checksum to verify against.
 
 This is an early version, use it at your own risk.
