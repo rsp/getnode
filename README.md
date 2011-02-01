@@ -1,21 +1,23 @@
 GETNODE
 =======
-Getnode - Copyright (c) 2010, 2011 Rafal Pocztarski
+Getnode - Copyright (c) 2010, 2011 Rafal Pocztarski.
 This program comes with ABSOLUTELY NO WARRANTY.
 You may redistribute it under certain conditions.
-See LICENSE or run 'getnode license' for details.
+See LICENSE or run `getnode license` for details.
 
 Getnode downloads, configures, builds and tests Node.js
-Project home page: http://github.com/rsp/getnode
+Project home page: [https://github.com/rsp/getnode]
 
-Usage: getnode VERSION
+Usage: 
+       getnode VERSION
        getnode VERSION PREFIX
 
 Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz
 and builds for installation in PREFIX or /opt/node by default.
 If PREFIX is 'v' or 'V' it is equivalent to /opt/node-VERSION
 
-Examples: getnode 0.2.6
+Examples:
+          getnode 0.2.6
           getnode 0.2.6 v
           getnode 0.2.6 /usr/local
 
@@ -23,7 +25,7 @@ ABOUT NODE
 ----------
 
 Node.js is an event-driven I/O framework for the V8 JavaScript engine
-developed by Ryan Dahl.  For more info see: http://nodejs.org/
+developed by Ryan Dahl.  For more info see: [http://nodejs.org/]
 
 ABOUT GETNODE
 -------------
