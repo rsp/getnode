@@ -1,3 +1,5 @@
+GETNODE
+=======
 Getnode - Copyright (c) 2010, 2011 Rafal Pocztarski
 This program comes with ABSOLUTELY NO WARRANTY.
 You may redistribute it under certain conditions.
@@ -18,16 +20,19 @@ Examples: getnode 0.2.6
           getnode 0.2.6 /usr/local
 
 ABOUT NODE
+----------
 
 Node.js is an event-driven I/O framework for the V8 JavaScript engine
 developed by Ryan Dahl.  For more info see: http://nodejs.org/
 
 ABOUT GETNODE
+-------------
 
 Getnode is a shell script written by Rafał Pocztarski to speed up Node
 deployments.
 
 PREREQUISITES
+-------------
 
 Getnode uses Wget to download the source code of Node, Tar to extract it and
 Make to build it.  Building Node requires essential development tools like
@@ -45,6 +50,7 @@ For more info on Node's dependencies see:
 https://github.com/ry/node/wiki/Installation
 
 TODO
+----
 
 There is still a lot to do to make this script more useful.
 
