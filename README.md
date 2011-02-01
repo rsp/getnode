@@ -1,6 +1,6 @@
 GETNODE
 =======
-Getnode - Copyright (c) 2010, 2011 Rafal Pocztarski.
+Copyright (c) 2010, 2011 Rafal Pocztarski.
 This program comes with ABSOLUTELY NO WARRANTY.
 You may redistribute it under certain conditions.
 See LICENSE or run `getnode license` for details.
@@ -14,7 +14,7 @@ Usage:
 
 Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz
 and builds for installation in PREFIX or /opt/node by default.
-If PREFIX is 'v' or 'V' it is equivalent to /opt/node-VERSION
+If PREFIX is `v` or `V` it is equivalent to /opt/node-VERSION
 
 Examples:
           getnode 0.2.6
@@ -46,7 +46,7 @@ For example on a fresh install of Ubuntu Server 10.10 you need to run:
 
     sudo apt-get install build-essential libssl-dev curl
 
-to have everything needed to build Node.
+to have everything needed to build and test Node.
 
 For more info on Node's dependencies see:
 [Node Installation](https://github.com/ry/node/wiki/Installation)
