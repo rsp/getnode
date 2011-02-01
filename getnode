@@ -1,32 +1,127 @@
 #!/bin/bash
 # RSP 2010-09-16
-echo
-echo "Getnode - Copyright (c) 2010, 2011 Rafal Pocztarski"
-echo "This program comes with ABSOLUTELY NO WARRANTY."
-echo "You may redistribute it under certain conditions."
-echo "See LICENSE for details."
-echo
-echo "Getnode downloads, configures, builds and tests node."
-echo "Project home page: http://github.com/rsp/getnode"
-echo
-if [ "$1" == "" ]; then
-    echo "Usage: getnode VERSION"
-    echo "       getnode VERSION PREFIX"
-    echo
-    echo "Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz"
-    echo "and builds for installation in PREFIX or /opt/node by default."
-    echo "If PREFIX is 'v' or 'V' it is equivalent to /opt/node-VERSION"
-    echo
-    echo "Examples: getnode 0.2.6"
-    echo "          getnode 0.2.6 v"
-    echo "          getnode 0.2.6 /usr/local"
-    echo
-    exit 1
-fi
-function error {
-    echo -e "$1\n"
-    exit 2
+
+function SECTION { read -d '' $1; }
+
+SECTION HEADER << 'END_HEADER'
+Getnode - Copyright (c) 2010, 2011 Rafal Pocztarski
+This program comes with ABSOLUTELY NO WARRANTY.
+You may redistribute it under certain conditions.
+See LICENSE or run 'getnode license' for details.
+END_HEADER
+
+SECTION LICENSE << 'END_LICENSE'
+Copyright (c) 2010 Rafal Pocztarski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+END_LICENSE
+
+SECTION INTRO << 'END_INTRO'
+Getnode downloads, configures, builds and tests Node.js
+Project home page: http://github.com/rsp/getnode
+END_INTRO
+
+SECTION USAGE << 'END_USAGE'
+Usage: getnode VERSION
+       getnode VERSION PREFIX
+
+Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz
+and builds for installation in PREFIX or /opt/node by default.
+If PREFIX is 'v' or 'V' it is equivalent to /opt/node-VERSION
+
+Examples: getnode 0.2.6
+          getnode 0.2.6 v
+          getnode 0.2.6 /usr/local
+END_USAGE
+
+SECTION DESCRIPTION << 'END_DESCRIPTION'
+ABOUT NODE
+
+Node.js is an event-driven I/O framework for the V8 JavaScript engine
+developed by Ryan Dahl.  For more info see: http://nodejs.org/
+
+ABOUT GETNODE
+
+Getnode is a shell script written by Rafał Pocztarski to speed up Node
+deployments.
+
+PREREQUISITES
+
+Getnode uses Wget to download the source code of Node, Tar to extract it and
+Make to build it.  Building Node requires essential development tools like
+Make and a C++ compiler, Python version 2.4 or higher and a development
+version of the SSL library.  Testing Node requires cURL.
+
+Most of those tools are probably installed by default on any modern system.
+For example on a fresh install of Ubuntu Server 10.10 you need to run:
+
+    sudo apt-get install build-essential libssl-dev curl
+
+to have everything needed to build Node.
+
+For more info on Node's dependencies see:
+https://github.com/ry/node/wiki/Installation
+
+TODO
+
+There is still a lot to do to make this script more useful.
+
+The default installation prefix will change and more shortcuts will be added.
+
+There should be an option to build without SSL and maybe without testing.
+
+This is an early version, use it at your own risk.
+END_DESCRIPTION
+
+function warn {
+    echo -e "$1" >&2
 }
+function error {
+    warn "$1" 
+    exit 1
+}
+function usage_help {
+    echo -e "$HEADER\n\n$INTRO\n\n$USAGE"
+    exit
+}
+function usage_error {
+    echo -e "$HEADER\n\nError: Bad arguments\n\n$USAGE" 
+    exit 1
+}
+function help {
+    echo -e "$HEADER\n\n$INTRO\n\n$USAGE\n\n$DESCRIPTION"
+    exit
+}
+function license {
+    echo -e "$LICENSE"
+    exit
+}
+
+case "$1" in
+    "") usage_error;;
+    usage) usage_help;;
+    help) help;;
+    license) license;;
+esac
+
+[ $# -eq 1 ] || [ $# -eq 2 ] || usage_error
+
 version="$1"
 dir="node-v$version"
 file="$dir.tar.gz"
@@ -38,17 +133,17 @@ elif [ "$2" == "v" ] || [ "$2" == "V" ]; then
 else
     prefix="$2"
 fi
-echo "Getnode is going to download:"
-echo "    $url"
-echo "and build it for installation in:"
-echo "    $prefix"
+warn "Getnode is going to download:"
+warn "    $url"
+warn "and build it for installation in:"
+warn "    $prefix"
 
 d1=`date '+%Y-%m-%d %H:%M:%S'`
 if [ -d $dir ]; then
     error "Directory $dir already exists - remove manually"
 fi
 if [ -f $file ]; then
-    echo "File $file already exists - skipping download"
+    warn "File $file already exists - skipping download"
 else
     wget $url
 fi
@@ -61,11 +156,11 @@ if [ ! -d $dir ]; then
 fi
 cd $dir
 ./configure --prefix=$prefix \
-&& make && make test && echo DONE || error ERROR
+&& make && make test && warn DONE || error ERROR
 d2=`date '+%Y-%m-%d %H:%M:%S'`
-echo -e "From:\t$d1\nTo:\t$d2"
-echo
-echo "You can now run 'make install' or 'sudo make install'"
-echo "to install $dir in $prefix"
-echo
+warn "From:\t$d1\nTo:\t$d2"
+warn
+warn "You can now 'cd $dir' and run 'make install' or 'sudo make install'"
+warn "to install $dir in $prefix"
+warn
 
