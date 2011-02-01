@@ -33,8 +33,9 @@ ABOUT GETNODE
 [Rafał Pocztarski](https://github.com/rsp) to speed up Node deployments.
 
 It downloads the source code of a given version of Node, calculates SHA-1
-checksum and asks for approval.  Then it tries to configure, build and test
-Node.  Currently it doesn't install but does everything except `make install`.
+checksum and verifies it against a list of known checksum.  Then it tries to
+configure, build and test Node.  Currently it doesn't install but does
+everything except `make install`.
 
 Note that it only installs a single version in a single place at a time.
 For more advanced tools to manage Node installations see:
@@ -49,12 +50,37 @@ install one version of Node on many different systems.  So if you need to run
 a specific version of Node in a heterogeneous environment of incompatible
 systems where binary deployment is not an option then Getnode may be for you.
 
+SECURITY
+--------
+Getnode uses insecure HTTP connections to download the source code but it then
+verifies it against a list of known SHA-1 checksums to make sure that the
+downloaded code contains exactly what was expected.
+
+Currently it knows checksums of the following versions of Node:
+
+* 0.1.100 - 0.1.104
+* 0.2.0 - 0.2.6
+* 0.3.0 - 0.3.7
+
+If you try to get a version of Node that Getnode doesn't know about then
+you have to explicitly accept the computed checksum so you have an option
+to verify it manually.
+
+Note that at the time of this writing there is no list of SHA-1 checksums
+on [Node.js website](http://nodejs.org/).  The checksums in this script
+were computed manually after downloading the above versions so they are not
+guaranteed to be "correct".  It is possible, however unlikely, that I have
+computed checksums of corrupted or even malware-infected versions.  All you
+can tell after a positive verification is that you have downloaded the same
+file as I have.
+
 PREREQUISITES
 -------------
-Getnode uses cURL or Wget to download the source code of Node, Tar to extract
-it and Make to build it.  Building Node requires essential development tools
-like Make and a C++ compiler, Python version 2.4 or higher and a development
-version of the SSL library.  Testing Node requires cURL.
+Getnode uses cURL or Wget to download the source code of Node; OpenSSL,
+sha1sum or shasum to verify it; Tar to extract it and Make to build it.
+Building Node requires essential development tools like Make and a C++
+compiler, Python version 2.4 or higher and a development version of the SSL
+library.  Testing Node requires cURL.
 
 Most of those tools are probably installed by default on any modern system.
 For example on a fresh install of Ubuntu Server 10.10 you need to run:
@@ -80,6 +106,5 @@ There is still a lot to do to make this script more useful.
 * There should be an option to build without SSL and maybe without testing.
 * There will be an option to automatically `make install`.
 * There will be option to automatically answer Yes to any question.
-* There will be a way to supply the correct SHA-1 checksum to verify against.
 
 This is an early version, use it at your own risk.

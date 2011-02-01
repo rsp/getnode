@@ -65,8 +65,9 @@ ABOUT GETNODE
 [Rafał Pocztarski](https://github.com/rsp) to speed up Node deployments.
 
 It downloads the source code of a given version of Node, calculates SHA-1
-checksum and asks for approval.  Then it tries to configure, build and test
-Node.  Currently it doesn't install but does everything except `make install`.
+checksum and verifies it against a list of known checksum.  Then it tries to
+configure, build and test Node.  Currently it doesn't install but does
+everything except `make install`.
 
 Note that it only installs a single version in a single place at a time.
 For more advanced tools to manage Node installations see:
@@ -81,12 +82,37 @@ install one version of Node on many different systems.  So if you need to run
 a specific version of Node in a heterogeneous environment of incompatible
 systems where binary deployment is not an option then Getnode may be for you.
 
+SECURITY
+--------
+Getnode uses insecure HTTP connections to download the source code but it then
+verifies it against a list of known SHA-1 checksums to make sure that the
+downloaded code contains exactly what was expected.
+
+Currently it knows checksums of the following versions of Node:
+
+* 0.1.100 - 0.1.104
+* 0.2.0 - 0.2.6
+* 0.3.0 - 0.3.7
+
+If you try to get a version of Node that Getnode doesn't know about then
+you have to explicitly accept the computed checksum so you have an option
+to verify it manually.
+
+Note that at the time of this writing there is no list of SHA-1 checksums
+on [Node.js website](http://nodejs.org/).  The checksums in this script
+were computed manually after downloading the above versions so they are not
+guaranteed to be "correct".  It is possible, however unlikely, that I have
+computed checksums of corrupted or even malware-infected versions.  All you
+can tell after a positive verification is that you have downloaded the same
+file as I have.
+
 PREREQUISITES
 -------------
-Getnode uses cURL or Wget to download the source code of Node, Tar to extract
-it and Make to build it.  Building Node requires essential development tools
-like Make and a C++ compiler, Python version 2.4 or higher and a development
-version of the SSL library.  Testing Node requires cURL.
+Getnode uses cURL or Wget to download the source code of Node; OpenSSL,
+sha1sum or shasum to verify it; Tar to extract it and Make to build it.
+Building Node requires essential development tools like Make and a C++
+compiler, Python version 2.4 or higher and a development version of the SSL
+library.  Testing Node requires cURL.
 
 Most of those tools are probably installed by default on any modern system.
 For example on a fresh install of Ubuntu Server 10.10 you need to run:
@@ -112,7 +138,6 @@ There is still a lot to do to make this script more useful.
 * There should be an option to build without SSL and maybe without testing.
 * There will be an option to automatically `make install`.
 * There will be option to automatically answer Yes to any question.
-* There will be a way to supply the correct SHA-1 checksum to verify against.
 
 This is an early version, use it at your own risk.
 END_DESCRIPTION
@@ -148,6 +173,14 @@ function askcontinue {
         *) error "Aborting";;
     esac
 }
+function askcontinue_n {
+    read -p "Do you REALLY want to continue [y/N]? "
+    case "$REPLY" in
+        [Yy]);;
+        [Yy][Ee][Ss]);;
+        *) error "Aborting";;
+    esac
+}
 function find_get_command {
     get_program=$(which curl) && {
         get_command="$get_program -f -O"
@@ -174,6 +207,32 @@ function find_sha1_command {
         return
     }
     return 1
+}
+function known_sha1 {
+    case "$1" in
+        node-v0.1.100.tar.gz) sha1=456148d0b050ffa4fb2766099a41f6a15d0f9e5c;;
+        node-v0.1.101.tar.gz) sha1=38de769c943f6583e139058b081da665a1c2afa7;;
+        node-v0.1.102.tar.gz) sha1=348604a2b2d238d6745c9dc0ef640bcf8fc40379;;
+        node-v0.1.103.tar.gz) sha1=abcbb4ee7acf898c53fb610d52965b35de0413a6;;
+        node-v0.1.104.tar.gz) sha1=9fa142bb532b9ff9031be382b864aea6a8fa0389;;
+        node-v0.2.0.tar.gz) sha1=79e52937f5fa6f233985d766f137b4b8f22481b2;;
+        node-v0.2.1.tar.gz) sha1=289b53832c2157909c72a8b7b0e5a501a5be7275;;
+        node-v0.2.2.tar.gz) sha1=4b8a734008ed3e9ba10d72c4f8a60ae56395d992;;
+        node-v0.2.3.tar.gz) sha1=5fa3d2b9f5153b87b8f1e3cfc6d0a2cb70832969;;
+        node-v0.2.4.tar.gz) sha1=1f7d3211432e2c2669ddcc098f1e7efcee03878a;;
+        node-v0.2.5.tar.gz) sha1=dbf9ad808bf74c908e8c247ce06c8f083edc388f;;
+        node-v0.2.6.tar.gz) sha1=6c77915283eb81914cc39ece07b41de9b5d60c39;;
+        node-v0.3.0.tar.gz) sha1=3a6a176f7cfa3b75cad4f1a54f2b04e1a4405118;;
+        node-v0.3.1.tar.gz) sha1=91d7a9d188c8323cfa8de76cc52e5507aad81778;;
+        node-v0.3.2.tar.gz) sha1=dd611c52a48029a817408725b96d0a8c776a5340;;
+        node-v0.3.3.tar.gz) sha1=44887ed360f8fc53f3ba03e6f599841ed23042c9;;
+        node-v0.3.4.tar.gz) sha1=75508bb1781c5a4214b2c3d113cf51df39b326b8;;
+        node-v0.3.5.tar.gz) sha1=26de17d2929e3f8e7ffa40f6b155e323d06f8517;;
+        node-v0.3.6.tar.gz) sha1=a20a708d62c11bbbd4488445b3ed04c26ed37b7d;;
+        node-v0.3.7.tar.gz) sha1=7a40ef2df98b97025db68d7100f02f540b5bbf7d;;
+        *) sha1=unknown;;
+    esac
+    knownhash=$sha1
 }
 
 case "$1" in
@@ -211,29 +270,46 @@ if [ -f $file ]; then
     warn "File $file already exists - skipping download"
 else
     find_get_command || error "You need to have curl or wget installed in PATH"
+    warn "Using $get_program to download $file"
     $get_command $url || error "Download failed"
 fi
 if [ ! -f $file ]; then
     error "File $file not found - download failed"
 fi
+ls -alp $file
 
 if find_sha1_command; then
     warn "Running: $hash_command < $file"
     hashline=`$hash_command < $file` || error "Error running $hash_command"
     realhash=${hashline%% *}
-    warn "SHA-1 checksum: $realhash"
+    known_sha1 $file
+    warn "Computed SHA-1 checksum is: $realhash"
+    if [ "$knownhash" = "unknown" ]; then
+        warn "Correct checksum is unknown for this version"
+        warn "You need to verify it yourself"
+        askcontinue_n
+    else
+        warn "Correct checksum should be: $knownhash"
+        if [ "$knownhash" = "$realhash" ]; then
+            warn "Checksum OK"
+            askcontinue
+        else
+            warn "Checksum ERROR!  Maybe an incomplete download?"
+            error "Remove $file and try again"
+        fi
+    fi
 else
     warn "Cannot find any program to calculate SHA-1 checksum!"
+    askcontinue_n
 fi
-askcontinue
 
 tar xzvf $file || error "Error extracting $file"
 if [ ! -d $dir ]; then
     error "Directory $dir not found - extraction failed"
 fi
 cd $dir
-./configure --prefix=$prefix \
-&& make && make test && warn DONE || error ERROR
+./configure --prefix=$prefix && make && make test && \
+warn DONE || error "ERROR building Node!  Do you have all prerequisites?"
 d2=`date '+%Y-%m-%d %H:%M:%S'`
 warn "From:\t$d1\nTo:\t$d2"
 warn
