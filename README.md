@@ -2,7 +2,7 @@ GETNODE
 =======
 Copyright (c) 2010, 2011 Rafal Pocztarski.
 This program comes with ABSOLUTELY NO WARRANTY.
-You may redistribute it under certain conditions.
+It is released under the MIT License.
 See LICENSE or run `getnode license` for details.
 
 Getnode downloads, configures, builds and tests the Node.js source code.
@@ -33,7 +33,7 @@ ABOUT GETNODE
 [Rafał Pocztarski](https://github.com/rsp) to speed up Node deployments.
 
 It downloads the source code of a given version of Node, calculates SHA-1
-checksum and verifies it against a list of known checksum.  Then it tries to
+checksum and verifies it against a list of known checksums.  Then it tries to
 configure, build and test Node.  Currently it doesn't install but does
 everything except `make install`.
 
@@ -96,7 +96,8 @@ BUGS
 ----
 If you find any bugs or have any suggestion, please use
 [the issue tracking system](https://github.com/rsp/getnode/issues)
-or fork the project on GitHub, commit your changes and send me a pull request.
+or fork [the project on GitHub](https://github.com/rsp/getnode),
+commit your changes and send me a pull request.
 
 TODO
 ----
@@ -110,3 +111,9 @@ There is still a lot to do to make this script more useful.
 * There might be an option to update PATH and MANPATH.
 
 This is an early version, use it at your own risk.
+
+LICENSE
+-------
+This program is released under the MIT License.
+See LICENSE or run `getnode license` for details.
+It comes with ABSOLUTELY NO WARRANTY.
