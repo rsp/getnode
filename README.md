@@ -13,14 +13,14 @@ Usage:
        getnode VERSION PREFIX
 
 Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz
-and builds for installation in PREFIX or /opt/node by default.
-If PREFIX is `v` or `V` it is equivalent to /opt/node-VERSION
-(Note: the default prefix will change in later versions)
+and builds for installation in PREFIX or $HOME/local/node by default.
+If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
+(Note: the default prefix may change in later versions)
 
 Examples:
           getnode 0.2.6
           getnode 0.2.6 v
-          getnode 0.2.6 /usr/local
+          getnode 0.2.6 ~/node-0.2
 
 ABOUT NODE
 ----------
@@ -96,7 +96,7 @@ BUGS
 ----
 If you find any bugs or have any suggestion, please use
 [the issue tracking system](https://github.com/rsp/getnode/issues)
-or fork the project on GitHub, fix it and send me a pull request.
+or fork the project on GitHub, commit your changes and send me a pull request.
 
 TODO
 ----
@@ -105,6 +105,8 @@ There is still a lot to do to make this script more useful.
 * The default installation prefix will change and more shortcuts will be added.
 * There should be an option to build without SSL and maybe without testing.
 * There will be an option to automatically `make install`.
-* There will be option to automatically answer Yes to any question.
+* There will be option to automatically give the default answer to any question.
+* There might be an option to provide url instead of version for local mirrors.
+* There might be an option to update PATH and MANPATH.
 
 This is an early version, use it at your own risk.
