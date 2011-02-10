@@ -6,9 +6,8 @@ function SECTION { read -d '' $1; }
 
 SECTION HEADER << 'END_HEADER'
 Copyright (c) 2010, 2011 Rafal Pocztarski.
-This program comes with ABSOLUTELY NO WARRANTY.
-It is released under the MIT License.
-See LICENSE or run `getnode license` for details.
+This program comes with ABSOLUTELY NO WARRANTY.  It is released under
+the MIT License.  See LICENSE or run `getnode license` for details.
 END_HEADER
 
 SECTION LICENSE << 'END_LICENSE'
@@ -49,9 +48,9 @@ If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
 (Note: the default prefix may change in later versions)
 
 Examples:
-          getnode 0.2.6
-          getnode 0.2.6 v
-          getnode 0.2.6 ~/node-0.2
+          getnode 0.4.0
+          getnode 0.4.0 v
+          getnode 0.4.0 ~/node-0.4
 END_USAGE
 
 SECTION DESCRIPTION << 'END_DESCRIPTION'
@@ -93,7 +92,8 @@ Currently it knows checksums of the following versions of Node:
 
 * 0.1.100 - 0.1.104
 * 0.2.0 - 0.2.6
-* 0.3.0 - 0.3.7
+* 0.3.0 - 0.3.8
+* 0.4.0
 
 If you try to get a version of Node that Getnode doesn't know about then
 you have to explicitly accept the computed checksum so you have an option
@@ -147,9 +147,8 @@ This is an early version, use it at your own risk.
 
 LICENSE
 -------
-This program is released under the MIT License.
-See LICENSE or run `getnode license` for details.
-It comes with ABSOLUTELY NO WARRANTY.
+This program is released under the MIT License.  See LICENSE or run
+`getnode license` for details.  It comes with ABSOLUTELY NO WARRANTY.
 END_DESCRIPTION
 
 function warn {
@@ -241,6 +240,8 @@ function known_sha1 {
         node-v0.3.5.tar.gz) sha1=26de17d2929e3f8e7ffa40f6b155e323d06f8517;;
         node-v0.3.6.tar.gz) sha1=a20a708d62c11bbbd4488445b3ed04c26ed37b7d;;
         node-v0.3.7.tar.gz) sha1=7a40ef2df98b97025db68d7100f02f540b5bbf7d;;
+        node-v0.3.8.tar.gz) sha1=6f2620a4912af875b5aaaf89d21d94d3b4b9a727;;
+        node-v0.4.0.tar.gz) sha1=303b616be1ea17b16d771cced02115705be0b934;;
         *) sha1=unknown;;
     esac
     knownhash=$sha1
