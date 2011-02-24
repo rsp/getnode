@@ -1,8 +1,5 @@
 GETNODE
 =======
-Copyright (c) 2010, 2011 Rafal Pocztarski.
-This program comes with ABSOLUTELY NO WARRANTY.  It is released under
-the MIT License.  See LICENSE or run `getnode license` for details.
 
 Getnode downloads, configures, builds and tests the Node.js source code.
 Project home page: [https://github.com/rsp/getnode]
@@ -11,15 +8,15 @@ Usage:
        getnode VERSION
        getnode VERSION PREFIX
 
-Downloads: http://nodejs.org/dist/node-vVERSION.tar.gz
+It downloads http://nodejs.org/dist/node-vVERSION.tar.gz
 and builds for installation in PREFIX or $HOME/local/node by default.
 If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
 (Note: the default prefix may change in later versions)
 
 Examples:
-          getnode 0.4.0
-          getnode 0.4.0 v
-          getnode 0.4.0 ~/node-0.4
+          getnode 0.4.1
+          getnode 0.4.1 v
+          getnode 0.4.1 ~/node-0.4
 
 ABOUT NODE
 ----------
@@ -28,10 +25,8 @@ JavaScript engine developed by [Ryan Dahl](https://github.com/ry).
 
 ABOUT GETNODE
 -------------
-[Getnode](https://github.com/rsp/getnode) is a shell script written by
-[Rafał Pocztarski](https://github.com/rsp) to speed up Node deployments.
-
-It downloads the source code of a given version of Node, calculates SHA-1
+[Getnode](https://github.com/rsp/getnode) is a shell script that
+downloads the source code of a given version of Node, calculates SHA-1
 checksum and verifies it against a list of known checksums.  Then it tries to
 configure, build and test Node.  Currently it doesn't install but does
 everything except `make install`.
@@ -60,7 +55,7 @@ Currently it knows checksums of the following versions of Node:
 * 0.1.100 - 0.1.104
 * 0.2.0 - 0.2.6
 * 0.3.0 - 0.3.8
-* 0.4.0
+* 0.4.0 - 0.4.1
 
 If you try to get a version of Node that Getnode doesn't know about then
 you have to explicitly accept the computed checksum so you have an option
@@ -111,6 +106,10 @@ There is still a lot to do to make this script more useful.
 * There might be an option to update PATH and MANPATH.
 
 This is an early version, use it at your own risk.
+
+AUTHOR
+------
+Copyright (c) 2010, 2011 Rafal Pocztarski.
 
 LICENSE
 -------
