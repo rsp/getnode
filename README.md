@@ -14,9 +14,9 @@ If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
 (Note: the default prefix may change in later versions)
 
 Examples:
-          getnode 0.4.3
-          getnode 0.4.3 v
-          getnode 0.4.3 ~/node-0.4
+          getnode 0.4.4
+          getnode 0.4.4 v
+          getnode 0.4.4 ~/node-0.4
 
 ABOUT NODE
 ----------
@@ -55,19 +55,21 @@ Currently it knows checksums of the following versions of Node:
 * 0.1.100 - 0.1.104
 * 0.2.0 - 0.2.6
 * 0.3.0 - 0.3.8
-* 0.4.0 - 0.4.3
+* 0.4.0 - 0.4.4
 
 If you try to get a version of Node that Getnode doesn't know about then
 you have to explicitly accept the computed checksum so you have an option
 to verify it manually.
 
 Note that at the time of this writing there is no list of SHA-1 checksums
-on [Node.js website](http://nodejs.org/).  The checksums in this script
+on [Node.js website](http://nodejs.org/).  Also the Node.js website cannot
+be accessed using HTTPS. The checksums in this script
 were computed manually after downloading the above versions so they are not
 guaranteed to be "correct".  It is possible, however unlikely, that I have
-computed checksums of corrupted or even malware-infected versions.  All you
+computed checksums of corrupted or even malware-infected versions.  What you
 can tell after a positive verification is that you have downloaded the same
-file as I have.
+file as I have, which is usually enough to avoid local and/or temporary
+attacks.
 
 PREREQUISITES
 -------------
