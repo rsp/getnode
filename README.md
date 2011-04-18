@@ -3,7 +3,7 @@ GETNODE
 
 Getnode downloads, configures, builds and tests the Node.js source code.
 It verifies the SHA-1 checksum of the downloaded source code.
-[Project home page](https://github.com/rsp/getnode)
+Project home page: https://github.com/rsp/getnode
 
 Usage: 
        getnode VERSION
@@ -15,9 +15,9 @@ If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
 (Note: the default prefix may change in later versions)
 
 Examples:
-          getnode 0.4.5
-          getnode 0.4.5 v
-          getnode 0.4.5 ~/node-0.4
+          getnode 0.4.6
+          getnode 0.4.6 v
+          getnode 0.4.6 ~/node-0.4
 
 ABOUT NODE
 ----------
@@ -56,7 +56,7 @@ Currently it knows checksums of the following versions of Node:
 * 0.1.100 - 0.1.104
 * 0.2.0 - 0.2.6
 * 0.3.0 - 0.3.8
-* 0.4.0 - 0.4.5
+* 0.4.0 - 0.4.6
 
 If you try to get a version of Node that Getnode doesn't know about then
 you have to explicitly accept the computed checksum so you have an option
@@ -112,6 +112,7 @@ There is still a lot to do to make this script more useful.
 * There might be an option to provide url instead of version for local mirrors.
 * There might be an option to update PATH and MANPATH.
 * There should be an option to (securely) install NPM
+* The name might change
 
 This is an early version, use it at your own risk.
 
