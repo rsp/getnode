@@ -15,9 +15,9 @@ If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
 (Note: the default prefix may change in later versions)
 
 Examples:
-          getnode 0.4.6
-          getnode 0.4.6 v
-          getnode 0.4.6 ~/node-0.4
+          getnode 0.4.8
+          getnode 0.4.8 v
+          getnode 0.4.8 ~/node-0.4
 
 ABOUT NODE
 ----------
@@ -56,7 +56,7 @@ Currently it knows checksums of the following versions of Node:
 * 0.1.100 - 0.1.104
 * 0.2.0 - 0.2.6
 * 0.3.0 - 0.3.8
-* 0.4.0 - 0.4.6
+* 0.4.0 - 0.4.8
 
 If you try to get a version of Node that Getnode doesn't know about then
 you have to explicitly accept the computed checksum so you have an option
