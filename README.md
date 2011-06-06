@@ -6,8 +6,9 @@ It verifies the SHA-1 checksum of the downloaded source code.
 Project home page: https://github.com/rsp/getnode
 
 Usage: 
-       getnode VERSION
-       getnode VERSION PREFIX
+
+    getnode VERSION
+    getnode VERSION PREFIX
 
 It downloads http://nodejs.org/dist/node-vVERSION.tar.gz
 and builds for installation in PREFIX or $HOME/local/node by default.
@@ -15,9 +16,10 @@ If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
 (Note: the default prefix may change in later versions)
 
 Examples:
-          getnode 0.4.8
-          getnode 0.4.8 v
-          getnode 0.4.8 ~/node-0.4
+
+    getnode 0.4.8
+    getnode 0.4.8 v
+    getnode 0.4.8 ~/node-0.4
 
 ABOUT NODE
 ----------
