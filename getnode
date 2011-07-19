@@ -51,9 +51,9 @@ If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
 
 Examples:
 
-    getnode 0.4.8
-    getnode 0.4.8 v
-    getnode 0.4.8 ~/node-0.4
+    getnode 0.4.9
+    getnode 0.4.9 v
+    getnode 0.4.9 ~/node-0.4
 END_USAGE
 
 SECTION DESCRIPTION << 'END_DESCRIPTION'
@@ -94,7 +94,7 @@ Currently it knows checksums of the following versions of Node:
 * 0.1.100 - 0.1.104
 * 0.2.0 - 0.2.6
 * 0.3.0 - 0.3.8
-* 0.4.0 - 0.4.8
+* 0.4.0 - 0.4.9
 
 If you try to get a version of Node that Getnode doesn't know about then
 you have to explicitly accept the computed checksum so you have an option
@@ -263,6 +263,7 @@ function known_sha1 {
         node-v0.4.6.tar.gz) sha1=ba73033a266ffab16caf5470e8ed1e8dda2327fb;;
         node-v0.4.7.tar.gz) sha1=514c8fff800070752739b2872eed18750c202c78;;
         node-v0.4.8.tar.gz) sha1=0e2243677b59822abb3f30ff8fc51ccb6c4a6d76;;
+        node-v0.4.9.tar.gz) sha1=ce9b62baa993b385b1efd66058503ea215a08389;;
         *) sha1=unknown;;
     esac
     knownhash=$sha1
