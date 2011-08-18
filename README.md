@@ -17,9 +17,9 @@ If PREFIX is `v` or `V` it is equivalent to $HOME/local/node-VERSION
 
 Examples:
 
-    getnode 0.4.9
-    getnode 0.4.9 v
-    getnode 0.4.9 ~/node-0.4
+    getnode 0.4.11
+    getnode 0.4.11 v
+    getnode 0.4.11 ~/node-0.4
 
 ABOUT NODE
 ----------
@@ -58,7 +58,7 @@ Currently it knows checksums of the following versions of Node:
 * 0.1.100 - 0.1.104
 * 0.2.0 - 0.2.6
 * 0.3.0 - 0.3.8
-* 0.4.0 - 0.4.9
+* 0.4.0 - 0.4.11
 
 If you try to get a version of Node that Getnode doesn't know about then
 you have to explicitly accept the computed checksum so you have an option
@@ -113,8 +113,9 @@ There is still a lot to do to make this script more useful.
 * There will be option to automatically give the default answer to any question.
 * There might be an option to provide url instead of version for local mirrors.
 * There might be an option to update PATH and MANPATH.
-* There should be an option to (securely) install NPM
-* The name might change
+* There should be an option to (securely) install NPM.
+* Support for the 0.5 branch (currently unstable) will be added.
+* The name might change.
 
 This is an early version, use it at your own risk.
 
